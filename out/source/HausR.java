@@ -16,30 +16,42 @@ public class HausR extends PApplet {
 
 public void setup() {
   
-  background(255);
+}
+public void draw() {
+  noLoop();
+  noFill();
   translate(width/2.0f, height/2.0f);
+  background(255);
+
   int depth = 4;
   float scl = 50.0f;
+
   for (int x = -depth; x <= depth; x++) {
     for (int y = -depth; y <= depth; y++) {
       for (int z = -depth; z <= depth; z++) {
-        if (random(0, 1) < 0.39f) {
-          noFill();
-          pushMatrix();
-          translate(x * scl, y * scl, z * scl);
-          box(scl);
-          popMatrix();
-        } else if (random(0, 1) > 0.39f && random(0, 1) < 0.89f) {
-          pushMatrix();
-          translate(x * scl, y * scl, z * scl);
-          box(scl/2);
-          popMatrix();
-        } else {
-          pushMatrix();
-          translate(x * scl, y * scl, z * scl);
-          box(scl/3);
-          popMatrix();
-        }
+        pushMatrix();
+        translate(x * scl, y * scl, z * scl);
+        // Base
+        box(scl);
+
+        // Left Middle Point
+        translate(-scl * 0.5f, 0, 0);
+        ellipse(scl/2);
+
+        // Right Middle Point
+        translate(scl * 1.0f, 0, 0);
+        ellipse(scl/2);
+
+        // Top Point
+        translate(-scl * 0.5f + random(-4, 4), -scl * 0.5f, 0);
+        ellipse(scl/2);
+
+        // Bottom Point
+        translate(-scl * 0.5f, scl * 1.0f, 0);
+        box(scl/2);
+
+
+        popMatrix();
       }
     }
   }
