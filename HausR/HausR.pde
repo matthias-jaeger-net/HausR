@@ -1,5 +1,22 @@
+color[] palette = {
+  color(0),
+  color(40),
+  color(60),
+  color(90),
+  color(255),
+};
+color getRandomColor()
+{
+  int r = floor(random(0, palette.length));
+  return palette[r];
+}
+
 void setup() {
   size(800, 800, P3D);
+}
+
+void draw() {
+  noLoop();
   background(255);
   translate(width/2.0, height/2.0);
   int depth = 4;
